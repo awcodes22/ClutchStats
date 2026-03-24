@@ -1,0 +1,519 @@
+/* ======================================================
+   PlayerDetail.css
+   Styles for the individual player detail page.
+   Sections: Skeleton loader | Banner entrance animations |
+   Page base | Top nav | Header banner | Banner bottom nav |
+   Tab content area | Responsive breakpoints
+   ====================================================== */
+
+/* ========================= */
+/* SKELETON LOADER           */
+/* ========================= */
+
+
+.skel {
+  background: linear-gradient(90deg, #ececec 25%, #dcdcdc 50%, #ececec 75%);
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.6s infinite linear;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* ── Banner ── */
+.skeleton-banner {
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-banner-content {
+  display: flex;
+  align-items: flex-end;
+  padding: 48px 60px 0;
+}
+
+/* Player image with person silhouette */
+.skel-headshot {
+  width: 380px;
+  height: 280px;
+  border-radius: 10px 10px 0 0;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.skel-headshot-figure {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72%;
+  opacity: 0.2;
+}
+
+/* Identity */
+.skeleton-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-bottom: 28px;
+  margin-left: 20px;
+}
+
+.skel-status    { width: 72px;  height: 22px; border-radius: 20px; margin-bottom: 6px; }
+.skel-firstname { width: 140px; height: 28px; }
+.skel-lastname  { width: 270px; height: 62px; border-radius: 8px; }
+.skel-badge     { width: 115px; height: 32px; border-radius: 999px; }
+.skel-meta      { width: 210px; height: 22px; }
+
+.skeleton-divider {
+  width: 1px;
+  height: 170px;
+  background: rgba(0,0,0,0.08);
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: 28px;
+}
+
+/* Bio */
+.skeleton-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0 32px 28px;
+}
+
+.skeleton-bio-row { display: flex; flex-direction: column; gap: 5px; }
+.skel-bio-label   { width: 110px; height: 11px; }
+.skel-bio-value   { height: 16px; }
+
+/* Stats card */
+.skeleton-stats-card {
+  width: 340px;
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 14px;
+  overflow: hidden;
+  align-self: center;
+}
+
+.skel-stats-header { width: 100%; height: 50px; border-radius: 0; }
+
+.skeleton-stats-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 24px 16px;
+  gap: 12px;
+}
+
+.skeleton-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.skel-stat-label { width: 32px; height: 11px; }
+.skel-stat-value { width: 46px; height: 38px; border-radius: 6px; }
+
+/* Tab bar */
+.skeleton-tabs {
+  display: flex;
+  padding: 0 60px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin-top: 1px;
+}
+
+.skel-tab { width: 80px; height: 13px; margin: 17px 28px; }
+
+/* ── Season table skeleton ── */
+/* Matches .season-stats-table-wrapper exactly */
+.skeleton-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.skeleton-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Header cells */
+.skeleton-table-wrapper thead th {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+/* Data cells */
+.skeleton-table-wrapper tbody td {
+  padding: 11px 12px;
+  text-align: center;
+}
+
+/* Alternating row tint — mirrors the real table */
+.skeleton-table-wrapper tbody tr:nth-child(even) td { background: #f8f8fb; }
+.skeleton-table-wrapper tbody tr:nth-child(odd)  td { background: #fff; }
+
+/* Career totals row */
+.skeleton-table-wrapper .skel-career-row td { background: #f2f2f6 !important; }
+
+/* Inline skel bars inside cells */
+.skel-cell {
+  display: block;
+  margin: 0 auto;
+  height: 13px;
+  border-radius: 4px;
+}
+
+/* ========================= */
+/* BANNER ENTRANCE ANIMATIONS */
+/* ========================= */
+
+
+.player-image        { animation: pd-img-fade  1.0s ease both; animation-delay: 0ms; }
+.player-first-name   { animation: pd-fade-in   1.0s ease both; animation-delay: 80ms; }
+.player-last-name    { animation: pd-fade-in   1.0s ease both; animation-delay: 150ms; }
+.banner-identity .player-status      { animation: pd-fade-in 1.0s ease both; animation-delay: 160ms; align-self: flex-start; }
+.banner-tier-badge   { animation: pd-fade-in   1.0s ease both; animation-delay: 230ms; }
+.player-meta         { animation: pd-fade-in   1.0s ease both; animation-delay: 300ms; }
+.banner-divider      { animation: pd-fade-in   1.0s ease both; animation-delay: 260ms; }
+.banner-bio          { animation: pd-fade-in   1.0s ease both; animation-delay: 330ms; }
+.banner-right        { animation: pd-fade-in   1.0s ease both; animation-delay: 390ms; }
+
+/* ========================= */
+/* PAGE BASE                 */
+/* ========================= */
+
+.player-detail-page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* ========================= */
+/* TOP NAV                   */
+/* ========================= */
+
+.player-detail-nav {
+  width: 100%;
+  background: #fff;
+  padding: 20px 28px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.detail-nav-logo {
+  width: 300px;
+  height: auto;
+  max-height: 60px;
+  object-fit: contain;
+  display: block;
+  cursor: pointer;
+}
+
+/* ========================= */
+/* HEADER BANNER             */
+/* ========================= */
+
+.player-banner {
+  width: 100%;
+  background: #fff;
+  border-radius: 0 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Content row ── */
+.banner-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  padding: 48px 60px 0;
+}
+
+/* ── Left: player headshot — tall, sits on the bottom divider ── */
+.banner-left {
+  flex: 0 0 380px;
+  height: 280px;
+  align-self: flex-end;
+}
+
+.player-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px 10px 0 0;
+}
+
+/* ── Identity: name + team ── */
+.banner-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 0 0 auto;
+  padding-bottom: 28px;
+  margin-left: 20px;
+}
+
+.player-name-large {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.player-first-name {
+  font-size: 2.1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #333;
+  letter-spacing: 0.04em;
+}
+
+.player-last-name {
+  font-size: 3.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.banner-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px 7px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  width: fit-content;
+}
+
+.player-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.meta-team-logo {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ── Spacer: pushes bio + stats to the right ── */
+.banner-spacer {
+  flex: 1;
+}
+
+/* ── Vertical divider ── */
+.banner-divider {
+  width: 1px;
+  height: 170px;
+  background: rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: 28px;
+}
+
+/* ── Bio: HT/WT, birthdate, college, draft ── */
+.banner-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 0 0 auto;
+  padding: 0 32px 28px;
+}
+
+.bio-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bio-label {
+  font-size: 0.85rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #1a1a1a;
+}
+
+.bio-value {
+  font-size: 1.08rem;
+  font-weight: 400;
+  color: #222;
+}
+
+/* ── Right: season stats card ── */
+.banner-right {
+  flex: 0 0 340px;
+  align-self: center;
+}
+
+.season-stats-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.09);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.season-title {
+  width: 100%;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 24px 16px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+  padding: 0 14px;
+}
+
+.stat-box:not(:last-child) {
+  border-right: 1px solid rgba(0,0,0,0.08);
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #555;
+}
+
+.stat-value {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+/* ========================= */
+/* BANNER BOTTOM NAV         */
+/* ========================= */
+
+.banner-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner-h-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(0,0,0,0.08);
+}
+
+.banner-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 60px;
+  position: relative;
+}
+
+.banner-tab {
+  padding: 14px 28px;
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1;
+}
+
+.banner-tab:hover {
+  color: #555;
+}
+
+.banner-tab.active {
+  color: #2a2a2a;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 5px;
+  background: #2a2a2a;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+  transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1), width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* ========================= */
+/* TAB CONTENT AREA          */
+/* ========================= */
+
+.player-dashboard-placeholder {
+  width: 100%;
+  padding: 24px 60px 40px;
+  box-sizing: border-box;
+}
+
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media (max-width: 1100px) {
+  .banner-bio { display: none; }
+  .banner-divider { display: none; }
+  .banner-spacer { display: none; }
+}
+
+@media (max-width: 900px) {
+  .banner-content {
+    flex-wrap: wrap;
+    padding: 0 24px;
+  }
+
+  .banner-right { width: 100%; flex: unset; padding-bottom: 20px; }
+  .banner-tabs { padding: 0 24px; }
+  .player-dashboard-placeholder { padding: 20px 24px 32px; }
+}

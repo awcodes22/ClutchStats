@@ -1,0 +1,91 @@
+/* ======================================================
+   Charts.css
+   Styles for all chart components on the Charts tab.
+   Sections: Chart section layout | Chart card |
+   Wrapper heights | Responsive breakpoints
+   ====================================================== */
+
+/* ========================= */
+/* CHART SECTION LAYOUT      */
+/* ========================= */
+
+.charts-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.charts-row-three {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+/* ========================= */
+/* CHART CARD                */
+/* ========================= */
+
+.chart-card {
+  background: white;
+  border-radius: 24px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  border: 1px solid rgba(0,0,0,0.04);
+  animation: chartCardIn 0.5s ease both;
+}
+
+/* Stagger the three top cards */
+.charts-row-three .chart-card:nth-child(1) { animation-delay: 0ms; }
+.charts-row-three .chart-card:nth-child(2) { animation-delay: 80ms; }
+.charts-row-three .chart-card:nth-child(3) { animation-delay: 160ms; }
+
+/* Bottom full-width trend card */
+.charts-section > .chart-card { animation-delay: 240ms; }
+
+.chart-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #444;
+  margin: 0 0 16px 0;
+}
+
+/* ========================= */
+/* CHART WRAPPER HEIGHTS     */
+/* ========================= */
+
+.chart-container-trend {
+  height: 420px;
+}
+
+.chart-container-recent {
+  height: 300px;
+}
+
+.chart-container-donut {
+  height: 300px;
+}
+
+.chart-container-radar {
+  height: 100%;
+  width: 100%;
+}
+
+/* Radar wrapper in PlayerDetail — sized by parent chart-card */
+.chart-radar-wrapper {
+  height: 340px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media (max-width: 900px) {
+  .charts-row-three {
+    grid-template-columns: 1fr;
+  }
+}

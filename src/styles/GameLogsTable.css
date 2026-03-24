@@ -1,0 +1,156 @@
+/* ======================================================
+   GameLogsTable.css
+   Styles for the per-game logs table.
+   Sections: Section wrapper | Filter buttons | Table |
+   Team cell | Stat colour accents | No logs | Responsive
+   ====================================================== */
+
+/* -------------------- Section wrapper -------------------- */
+.game-logs-section {
+  width: 100%;
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px 0 8px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  border: 1px solid rgba(0,0,0,0.04);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  animation: tableWrapperIn 0.45s ease both;
+}
+
+.game-logs-table tbody tr {
+  animation: tableRowIn 0.4s ease-out both;
+}
+
+/* -------------------- Filter buttons -------------------- */
+.logs-filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 28px;
+}
+
+.filter-btn {
+  padding: 9px 24px;
+  border: 1.5px solid transparent;
+  border-radius: 20px;
+  background-color: #fff;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.18s, color 0.18s, background-color 0.18s;
+  letter-spacing: 0.02em;
+}
+
+.filter-btn:hover {
+  border-color: #555;
+  color: #1a1a1a;
+}
+
+.filter-btn.active {
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* -------------------- Table -------------------- */
+.game-logs-table {
+  width: calc(100% - 48px);
+  margin: 0 24px 16px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Header row */
+.game-logs-table thead tr {
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+
+.game-logs-table th {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #1a1a1a;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+/* All data cells — uniform weight and size */
+.game-logs-table td {
+  padding: 11px 6px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #444;
+  border: none;
+}
+
+/* Alternating row tint */
+.game-logs-table tbody tr:nth-child(even) td {
+  background-color: #f8f8fb;
+}
+
+.game-logs-table tbody tr:nth-child(odd) td {
+  background-color: #fff;
+}
+
+/* Hover — both even and odd */
+.game-logs-table tbody tr:hover td {
+  background-color: rgba(155, 142, 196, 0.08);
+}
+
+/* -------------------- Team cell (logo + abbr) -------------------- */
+.team-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.team-logo-sm {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* -------------------- Stat colour accents (color only, no bold) -------------------- */
+.cell-teal   { color: #7ec8c8; }
+.cell-purple { color: #9b8ec4; }
+.cell-blue   { color: #6cb8f0; }
+.cell-amber  { color: #f59e0b; }
+
+/* -------------------- No logs -------------------- */
+.no-logs {
+  padding: 40px;
+  text-align: center;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 1024px) {
+  .game-logs-table th,
+  .game-logs-table td {
+    padding: 9px 4px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-logs-section {
+    border-radius: 16px;
+    padding-top: 18px;
+  }
+
+  .game-logs-table th,
+  .game-logs-table td {
+    padding: 7px 3px;
+    font-size: 0.7rem;
+  }
+}

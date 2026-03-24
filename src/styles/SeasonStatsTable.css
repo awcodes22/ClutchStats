@@ -1,0 +1,101 @@
+/* ======================================================
+   SeasonStatsTable.css
+   Styles for the career season-by-season stats table.
+   Sections: Table wrapper | Header and cells | Row tints |
+   Team cell | Career totals row
+   ====================================================== */
+
+/* ========================= */
+/* TABLE WRAPPER             */
+/* ========================= */
+
+.season-stats-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.13);
+  animation: tableWrapperIn 0.45s ease both;
+}
+
+.season-stats-table tbody tr {
+  animation: tableRowIn 0.4s ease-out both;
+}
+
+/* ========================= */
+/* TABLE — HEADER AND CELLS  */
+/* ========================= */
+
+.season-stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.season-stats-table th {
+  padding: 10px 12px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #1a1a1a;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  white-space: nowrap;
+}
+
+.season-stats-table td {
+  padding: 11px 12px;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #444;
+  white-space: nowrap;
+}
+
+/* ========================= */
+/* ROW TINTS                 */
+/* ========================= */
+
+/* Alternating row tint */
+.season-stats-table tbody tr:nth-child(even) td {
+  background-color: #f8f8fb;
+}
+
+.season-stats-table tbody tr:nth-child(odd) td {
+  background-color: #fff;
+}
+
+.season-stats-table tbody tr:hover td {
+  background-color: rgba(155, 142, 196, 0.08);
+}
+
+/* ========================= */
+/* TEAM CELL (logo + abbr)   */
+/* ========================= */
+
+.season-stats-table-wrapper .team-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.season-stats-table-wrapper .team-logo-sm {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ========================= */
+/* CAREER TOTALS ROW         */
+/* ========================= */
+
+.career-row td {
+  font-weight: 600;
+  color: #222;
+  background-color: #f2f2f6 !important;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
