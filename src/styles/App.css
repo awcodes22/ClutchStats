@@ -451,9 +451,10 @@ body, input, button, a {
   gap: 5px;
   padding: 3px 9px;
   border-radius: 20px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
@@ -464,13 +465,13 @@ body, input, button, a {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.status-active       { color: #3d3d3d; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.08); }
+.status-active       { color: #555555; background: transparent; border: none; }
 .status-active       .player-status-dot { background: #4ade80; box-shadow: 0 0 4px #4ade80; }
-.status-questionable { color: #3d3d3d; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.08); }
+.status-questionable { color: #555555; background: transparent; border: none; }
 .status-questionable .player-status-dot { background: #fbbf24; box-shadow: 0 0 4px #fbbf24; }
-.status-dtd          { color: #3d3d3d; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.08); }
+.status-dtd          { color: #555555; background: transparent; border: none; }
 .status-dtd          .player-status-dot { background: #fb923c; box-shadow: 0 0 4px #fb923c; }
-.status-out          { color: #3d3d3d; background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.08); }
+.status-out          { color: #555555; background: transparent; border: none; }
 .status-out          .player-status-dot { background: #f87171; box-shadow: 0 0 4px #f87171; }
 
 /* Rank badge — top left over image */
