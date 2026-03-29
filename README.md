@@ -1,4 +1,4 @@
-# 🏀 ClutchStats
+<h1><img src="public/images/favicon.png" alt="ClutchStats Logo" width="36" style="vertical-align: middle; margin-right: 8px;" /> ClutchStats</h1>
 
 A full-stack NBA fantasy analytics app that ranks every player in the league using a custom scoring engine called **ClutchScore** — built for fantasy GMs who want fast, data-driven start/sit decisions.
 
