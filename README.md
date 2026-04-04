@@ -7,7 +7,7 @@ A full-stack NBA fantasy analytics app that ranks every player in the league usi
 
 ---
 
-## Features
+## ✨ Features
 
 | | |
 |:---|:---|
@@ -19,7 +19,7 @@ A full-stack NBA fantasy analytics app that ranks every player in the league usi
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | | |
 |:---|:---|
@@ -29,7 +29,7 @@ A full-stack NBA fantasy analytics app that ranks every player in the league usi
 
 ---
 
-## Deployment
+## 🚀 Deployment
 
 Live at **[clutchstats.vercel.app](https://clutchstats.vercel.app/)** — frontend on Vercel, backend on Render.
 
@@ -37,7 +37,7 @@ Live at **[clutchstats.vercel.app](https://clutchstats.vercel.app/)** — fronte
 
 ---
 
-## Running Locally
+## 💻 Running Locally
 
 You'll need two terminals — one for the frontend, one for the backend.
 
@@ -67,7 +67,7 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## Tests
+## 🧪 Tests
 
 ```bash
 npm test
@@ -77,7 +77,7 @@ Covers the core scoring engine — `calculateESPNScore`, `assignTier`, and `getR
 
 ---
 
-## How ClutchScore Works
+## ⚙️ How ClutchScore Works
 
 Modeled after ESPN H2H Points league settings:
 
