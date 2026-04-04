@@ -7,6 +7,12 @@ A full-stack NBA fantasy analytics app that ranks every player in the league usi
 
 ---
 
+## 🏀 Overview
+
+ClutchStats brings real-time NBA player data, injury tracking, and fantasy analytics into one fast, focused platform. Every player in the league is ranked using a custom scoring engine — **ClutchScore** — modeled after ESPN H2H Points league settings. Each ranking is backed by live stats from the NBA Stats API and live injury data from ESPN, so fantasy GMs always have an up-to-date picture when making start/sit decisions.
+
+---
+
 ## ✨ Features
 
 | | |
