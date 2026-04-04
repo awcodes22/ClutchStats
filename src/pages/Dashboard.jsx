@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/App.css";
 import PlayerCard from "../components/PlayerCard";
 import Navbar from "../components/Navbar";
-import { getRankedPlayers  } from "../utils/fantasyEngine";
+import { calculateESPNScore, assignTier, getRankedPlayers } from "../utils/fantasyEngine";
 import teamLogos from "../data/teamLogos";
 
 const tierOptions = ["All", "Elite Start", "Strong Start", "Flex Play", "Bench"];
@@ -74,22 +74,31 @@ function Dashboard() {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const rankedPlayers = getRankedPlayers();
+    const controller = new AbortController();
+    const { signal } = controller;
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/injuries`)
-      .then((r) => r.json())
-      .then((injuryMap) => {
-        setPlayers(
-          rankedPlayers.map((p) => ({
-            ...p,
-            injuryStatus: injuryMap[p.name]?.status ?? null,
-          }))
-        );
-      })
-      .catch(() => setPlayers(rankedPlayers));
+    // fetch live stats first, if the API times out or NBA.com blocks the request,
+    // fall back to the local playerStats.js snapshot so the dashboard still loads
+    Promise.all([
+      fetch(`${import.meta.env.VITE_API_URL}/api/all-players`, { signal }).then((r) => r.json()),
+      fetch(`${import.meta.env.VITE_API_URL}/api/injuries`, { signal }).then((r) => r.json()).catch(() => ({})),
+    ]).then(([rawPlayers, injuryMap]) => {
+      const scored = rawPlayers.map((p) => {
+        const fantasyScore = Math.round(calculateESPNScore(p));
+        return { ...p, fantasyScore, tier: assignTier(fantasyScore), injuryStatus: injuryMap[p.name]?.status ?? null };
+      });
+      scored.sort((a, b) => b.fantasyScore - a.fantasyScore);
+      const rankedPlayers = scored.map((p, i) => ({ ...p, rank: i + 1 }));
+      setPlayers(rankedPlayers);
+      setLoading(false);
+    }).catch((err) => {
+      if (err.name === "AbortError") return;
+      // API failed, use the static snapshot as a fallback
+      setPlayers(getRankedPlayers());
+      setLoading(false);
+    });
 
-    const id = setTimeout(() => setLoading(false), 600);
-    return () => clearTimeout(id);
+    return () => controller.abort();
   }, []);
 
   const handleSearchChange = (e) => {

@@ -446,4 +446,16 @@ app.get("/api/injuries", async (_req, res) => {
 
 app.listen(PORT, () => {
   console.log(`NBA Proxy running on http://localhost:${PORT}`);
+
+  // Refresh player stats on startup so playerStats.js is always current
+  const season = getCurrentSeason();
+  fetchAllPlayerStats(season)
+    .then((players) => {
+      saveToFile(PLAYER_STATS_FILE, players, "playerStats");
+      setCached(`all-players:${season}`, players);
+      console.log(`Startup: refreshed playerStats.js with ${players.length} players`);
+    })
+    .catch((err) => {
+      console.warn("Startup: failed to refresh player stats —", err.message);
+    });
 });
