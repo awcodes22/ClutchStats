@@ -1,15 +1,12 @@
 <h1><img src="public/images/favicon.png" alt="ClutchStats Logo" width="36" style="vertical-align: middle; margin-right: 8px;" /> ClutchStats</h1>
 
-A full-stack NBA fantasy analytics app that ranks every player in the league using a custom scoring engine called **ClutchScore** — built for fantasy GMs who want fast, data-driven start/sit decisions.
+NBA fantasy analytics platform built on a custom scoring engine called **ClutchScore**, to help GMs see the game differently.
 
-![Dashboard](public/images/dashboard-preview.png)
-![Player Detail](public/images/player-detail-preview.png)
+![ClutchStats Preview](public/images/clutchStatsPreview.png)
 
----
+## 📖 Overview
 
-## 🏀 Overview
-
-ClutchStats brings real-time NBA player data, injury tracking, and fantasy analytics into one fast, focused platform. Every player in the league is ranked using a custom scoring engine — **ClutchScore** — modeled after ESPN H2H Points league settings. Each ranking is backed by live stats from the NBA Stats API and live injury data from ESPN, so fantasy GMs always have an up-to-date picture when making start/sit decisions.
+ClutchStats brings together player rankings, live injury tracking, and fantasy analytics into one platform. Every ranking is powered by **ClutchScore**, a custom scoring engine built on ESPN H2H Points league settings. Live stats and injury data keep every ranking current, so you always have an edge.
 
 ---
 
@@ -21,7 +18,7 @@ ClutchStats brings real-time NBA player data, injury tracking, and fantasy analy
 | 🚑 | Live injury status pulled from ESPN |
 | 👤 | Player profiles with career stats, game logs, and performance charts |
 | 🔍 | Search with autocomplete and tier filtering |
-| 📅 | Auto-detects the current NBA season — no manual updates needed |
+| 📅 | Automatically tracks the current NBA season |
 
 ---
 
@@ -45,7 +42,7 @@ Live at **[clutchstats.vercel.app](https://clutchstats.vercel.app/)** — fronte
 
 ## 💻 Running Locally
 
-You'll need two terminals — one for the frontend, one for the backend.
+You'll need two terminals, one for the frontend, one for the backend.
 
 **1. Clone and install**
 ```bash
@@ -79,7 +76,7 @@ Open `http://localhost:5173` in your browser.
 npm test
 ```
 
-Covers the core scoring engine — `calculateESPNScore`, `assignTier`, and `getRankedPlayers`.
+Covers the core scoring engine — `calculateClutchScore`, `assignTier`, and `getRankedPlayers`.
 
 ---
 
