@@ -1,7 +1,7 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { getRankedPlayers, calculateESPNScore, assignTier } from "../utils/fantasyEngine";
+import { getRankedPlayers, calculateClutchScore, assignTier } from "../utils/fantasyEngine";
 import "../styles/PlayerDetail.css";
 import "../styles/Charts.css";
 import SeasonStatsTable from "../components/SeasonStatsTable";
@@ -40,7 +40,7 @@ const TIER_ICONS = {
 };
 
 function getPlayerTier(p) {
-  return assignTier(Math.round(calculateESPNScore(p)));
+  return assignTier(Math.round(calculateClutchScore(p)));
 }
 
 const SKEL_COLS = [72, 58, 32, 28, 46, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36];

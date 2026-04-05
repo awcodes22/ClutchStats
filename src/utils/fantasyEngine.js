@@ -3,7 +3,7 @@ import playerStats from "../data/playerStats";
 export function getRankedPlayers() {
   const scoredPlayers = playerStats.map((player) => {
     // Round before assigning tier so score and tier always agree
-    const fantasyScore = Math.round(calculateESPNScore(player));
+    const fantasyScore = Math.round(calculateClutchScore(player));
 
     return {
       ...player,
@@ -22,7 +22,7 @@ export function getRankedPlayers() {
   return rankedPlayers;
 }
 
-export function calculateESPNScore(player) {
+export function calculateClutchScore(player) {
   const pts  = player.pts  || 0;
   const reb  = player.reb  || 0;
   const ast  = player.ast  || 0;

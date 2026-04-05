@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../styles/App.css";
 import PlayerCard from "../components/PlayerCard";
 import Navbar from "../components/Navbar";
-import { calculateESPNScore, assignTier, getRankedPlayers } from "../utils/fantasyEngine";
+import { calculateClutchScore, assignTier, getRankedPlayers } from "../utils/fantasyEngine";
 import teamLogos from "../data/teamLogos";
 
 const tierOptions = ["All", "Elite Start", "Strong Start", "Flex Play", "Bench"];
@@ -84,7 +84,7 @@ function Dashboard() {
       fetch(`${import.meta.env.VITE_API_URL}/api/injuries`, { signal }).then((r) => r.json()).catch(() => ({})),
     ]).then(([rawPlayers, injuryMap]) => {
       const scored = rawPlayers.map((p) => {
-        const fantasyScore = Math.round(calculateESPNScore(p));
+        const fantasyScore = Math.round(calculateClutchScore(p));
         return { ...p, fantasyScore, tier: assignTier(fantasyScore), injuryStatus: injuryMap[p.name]?.status ?? null };
       });
       scored.sort((a, b) => b.fantasyScore - a.fantasyScore);

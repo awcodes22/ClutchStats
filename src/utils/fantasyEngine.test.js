@@ -4,42 +4,42 @@
 // run with: npm test
 
 import { describe, it, expect } from "vitest";
-import { calculateESPNScore, assignTier, getRankedPlayers } from "./fantasyEngine";
+import { calculateClutchScore, assignTier, getRankedPlayers } from "./fantasyEngine";
 
 // core scoring formula — if this breaks, every player's ClutchScore is wrong
-describe("calculateESPNScore", () => {
+describe("calculateClutchScore", () => {
   it("returns 0 for a player with no stats", () => {
-    expect(calculateESPNScore({})).toBe(0);
+    expect(calculateClutchScore({})).toBe(0);
   });
 
   it("scores points correctly", () => {
-    expect(calculateESPNScore({ pts: 10 })).toBe(10);
+    expect(calculateClutchScore({ pts: 10 })).toBe(10);
   });
 
   it("applies the right multiplier for rebounds", () => {
-    expect(calculateESPNScore({ reb: 10 })).toBe(12);
+    expect(calculateClutchScore({ reb: 10 })).toBe(12);
   });
 
   it("applies the right multiplier for assists", () => {
-    expect(calculateESPNScore({ ast: 10 })).toBe(15);
+    expect(calculateClutchScore({ ast: 10 })).toBe(15);
   });
 
   it("applies the right multiplier for steals and blocks", () => {
-    expect(calculateESPNScore({ stl: 2, blk: 1 })).toBe(9);
+    expect(calculateClutchScore({ stl: 2, blk: 1 })).toBe(9);
   });
 
   it("penalises missed field goals", () => {
     // 5 makes out of 10 attempts = 5 missed FG × -0.5 = -2.5
-    expect(calculateESPNScore({ fgm: 5, fga: 10 })).toBe(-2.5);
+    expect(calculateClutchScore({ fgm: 5, fga: 10 })).toBe(-2.5);
   });
 
   it("penalises turnovers", () => {
-    expect(calculateESPNScore({ tov: 4 })).toBe(-4);
+    expect(calculateClutchScore({ tov: 4 })).toBe(-4);
   });
 
   it("scores a typical stat line correctly", () => {
     // 25pts, 8reb, 6ast, 1stl, 1blk, 9/18 FG, 3/4 FT, 2 3PM, 2tov
-    const score = calculateESPNScore({
+    const score = calculateClutchScore({
       pts: 25, reb: 8, ast: 6, stl: 1, blk: 1,
       fgm: 9, fga: 18, fg3m: 2, ftm: 3, fta: 4, tov: 2,
     });

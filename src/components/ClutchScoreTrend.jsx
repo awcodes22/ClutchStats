@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Line } from "react-chartjs-2";
 import "../styles/Charts.css";
-import { calculateESPNScore } from "../utils/fantasyEngine";
+import { calculateClutchScore } from "../utils/fantasyEngine";
 import { useInView } from "../utils/animations";
 import {
   Chart as ChartJS,
@@ -33,7 +33,7 @@ export default function FantasyPointsTrendChart({ logs }) {
   const chronological = [...logs].reverse();
   const labels = chronological.map((g) => `vs ${g.OPP} (${g.GAME_DATE})`);
 
-  // Reconstruct the inputs required by calculateESPNScore from game log fields.
+  // Reconstruct the inputs required by calculateClutchScore from game log fields.
   // Game logs store FG% and FT% as percentages, not raw counts, so we back-
   // calculate FGA and FTA from makes and percentage to get the miss counts.
   const fpts = chronological.map((g) => {
@@ -45,7 +45,7 @@ export default function FantasyPointsTrendChart({ logs }) {
     const ftPct = parseFloat(g["FT%"]) || 0;
     const fta   = ftPct > 0 ? Math.round(ftm / (ftPct / 100)) : 0;
 
-    return Math.round(calculateESPNScore({
+    return Math.round(calculateClutchScore({
       pts: g.PTS, reb: g.REB, ast: g.AST, stl: g.STL, blk: g.BLK,
       fgm, fg3m: g["3PM"] || 0, fga, ftm, fta, tov: g.TOV || 0,
     }));
