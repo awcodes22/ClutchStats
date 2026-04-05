@@ -2,7 +2,7 @@
 
 NBA fantasy analytics platform built on a custom scoring engine called **ClutchScore**, to help GMs see the game differently.
 
-![ClutchStats Preview](public/images/clutchStatsPreview.png)
+![ClutchStats Preview](public/images/ClutchStatsPreview.png)
 
 ## 📖 Overview
 
