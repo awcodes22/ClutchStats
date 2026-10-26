@@ -88,6 +88,14 @@ export default function FantasyPointsTrendChart({ logs }) {
   const totalDuration = 1200;
   const delay = totalDuration / fpts.length;
 
+  // Each point animates up from the previous point's y (or the x-axis for the
+  // first point). Interpolating from NaN would keep the point invisible for its
+  // entire duration, which is very long when a player has only a few games.
+  const previousY = (ctx) =>
+    ctx.index === 0
+      ? ctx.chart.scales.y.getPixelForValue(minFpts)
+      : ctx.chart.getDatasetMeta(ctx.datasetIndex).data[ctx.index - 1].getProps(["y"], true).y;
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
@@ -106,8 +114,8 @@ export default function FantasyPointsTrendChart({ logs }) {
       y: {
         type: "number",
         easing: "easeInOutSine",
-        duration: delay * 8,
-        from: NaN,
+        duration: delay,
+        from: previousY,
         delay(ctx) {
           if (ctx.type !== "data" || ctx.yStarted) return 0;
           ctx.yStarted = true;
