@@ -36,7 +36,6 @@ ClutchStats brings together player rankings, live injury tracking, and fantasy a
 
 Live at **[clutchstats.vercel.app](https://clutchstats.vercel.app/)** — frontend on Vercel, backend on Render.
 
-> **Note:** The first load may take 30–60 seconds — Render spins down after inactivity and needs a moment to wake up.
 
 ---
 
