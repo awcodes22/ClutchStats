@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-function Navbar({ searchTerm, onSearchChange, searchResults, onSelectPlayer }) {
+function Navbar({ searchTerm, onSearchChange, searchResults, onSelectPlayer, action }) {
   const navigate = useNavigate();
 
   return (
@@ -13,6 +13,8 @@ function Navbar({ searchTerm, onSearchChange, searchResults, onSelectPlayer }) {
         onClick={() => navigate("/")}
         style={{ cursor: "pointer" }}
       />
+
+      {action && <div className="navbar-action">{action}</div>}
 
       <div className="search-wrapper">
         <svg

@@ -517,3 +517,274 @@
   .banner-tabs { padding: 0 24px; }
   .player-dashboard-placeholder { padding: 20px 24px 32px; }
 }
+
+@media (min-width: 701px) {
+  .player-meta-short { display: none; }
+}
+
+@media (max-width: 700px) {
+  .player-detail-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    padding: 0;
+  }
+
+  /* Dissolved so the tab bar's sticky range is the whole page, not just the banner */
+  .player-banner { display: contents; }
+
+  /* Hero — one centered column */
+  .banner-content {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .banner-left {
+    flex: none;
+    align-self: center;
+    width: 180px;
+    height: 150px;
+  }
+
+  .player-image {
+    background: rgba(255,255,255,0.7);
+    border-radius: 14px;
+  }
+
+  .banner-identity {
+    flex: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px 10px;
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    padding: 10px 0 14px;
+  }
+
+  .banner-identity .player-status {
+    flex-basis: 100%;
+    justify-content: center;
+    align-self: center;
+    margin: 0;
+    font-size: 0.8rem;
+  }
+
+  .player-name-large {
+    flex-basis: 100%;
+    align-items: center;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .player-first-name { font-size: 1.2rem; }
+
+  /* --name-len is the surname's length, so long names shrink to fit and short ones stay at 40px */
+  .player-last-name {
+    max-width: 100%;
+    line-height: 1.2;
+    font-size: min(2.5rem, calc((100vw - 32px) / (var(--name-len, 13) * 0.8)));
+    overflow-wrap: anywhere;
+  }
+
+  .banner-tier-badge {
+    padding: 5px 12px 5px 9px;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* !important beats the inline gradient; white text fails contrast on these two */
+  .banner-tier-badge[data-tier="Elite Start"] {
+    background: #f59e0b !important;
+    color: #1a1a1a;
+  }
+
+  .banner-tier-badge[data-tier="Flex Play"] {
+    background: #2176ae !important;
+  }
+
+  .player-meta {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .meta-team-logo,
+  .player-meta-full { display: none; }
+
+  /* Player info card */
+  .banner-bio {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+    flex: none;
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    background: #fff;
+    border: 1px solid #f3e6cf;
+    border-radius: 16px;
+    text-align: left;
+  }
+
+  .bio-row { min-width: 0; }
+
+  .bio-label {
+    color: #6b6b6b;
+    font-size: 0.66rem;
+    font-weight: 700;
+  }
+
+  .bio-value {
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
+  }
+
+  /* Season stats card */
+  .banner-right {
+    flex: none;
+    width: 100%;
+    margin-top: 12px;
+    padding-bottom: 0;
+  }
+
+  /* !important beats the inline tier colour */
+  .season-title {
+    padding: 10px 12px;
+    background: #f59e0b !important;
+    color: #1a1a1a;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 12px 4px;
+  }
+
+  .stat-box {
+    min-width: 0;
+    padding: 0 4px;
+    gap: 4px;
+  }
+
+  .stat-label { font-size: 0.7rem; }
+
+  .stat-value { font-size: 1.3rem; }
+
+  /* Tabs — segmented control, pinned under the 111px sticky header */
+  .banner-bottom {
+    position: sticky;
+    top: 111px;
+    z-index: 20;
+    padding: 8px 16px;
+    background: #fff;
+  }
+
+  .banner-h-divider,
+  .tab-indicator { display: none; }
+
+  .banner-tabs {
+    gap: 4px;
+    padding: 4px;
+    background: #eee;
+    border-radius: 12px;
+  }
+
+  .banner-tab {
+    flex: 1;
+    min-height: 44px;
+    padding: 0 6px;
+    border-radius: 9px;
+    color: #595959;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .banner-tab.active {
+    background: #fff;
+    color: #1a1a1a;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  }
+
+  .player-dashboard-placeholder { padding: 8px 16px 32px; }
+
+  /* Skeleton mirrors the stacked hero so the loading state doesn't jump or overflow */
+  .skeleton-banner-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .skel-headshot {
+    width: 180px;
+    height: 150px;
+    border-radius: 14px;
+  }
+
+  .skeleton-identity {
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-left: 0;
+    padding: 10px 0 14px;
+  }
+
+  .skel-status    { margin-bottom: 0; }
+  .skel-firstname { width: 110px; height: 20px; }
+  .skel-lastname  { width: 100%; max-width: 240px; height: 40px; }
+  .skel-badge     { width: 210px; height: 26px; }
+  .skel-meta      { display: none; }
+
+  .skeleton-divider { display: none; }
+
+  .skeleton-bio {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+    width: 100%;
+    padding: 14px;
+    box-sizing: border-box;
+    border: 1px solid #f3e6cf;
+    border-radius: 16px;
+  }
+
+  .skel-bio-label { width: 70%; }
+  .skeleton-bio .skel-bio-value { width: 90% !important; }
+
+  .skeleton-stats-card {
+    align-self: stretch;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .skel-stats-header { height: 36px; }
+
+  .skeleton-stats-row {
+    padding: 12px 8px;
+    gap: 8px;
+  }
+
+  .skel-stat-value { width: 100%; max-width: 46px; height: 22px; }
+
+  .skeleton-tabs {
+    gap: 4px;
+    margin: 8px 16px;
+    padding: 4px;
+    background: #eee;
+    border-top: none;
+    border-radius: 12px;
+  }
+
+  .skel-tab {
+    flex: 1;
+    width: auto;
+    height: 44px;
+    margin: 0;
+    border-radius: 9px;
+  }
+}

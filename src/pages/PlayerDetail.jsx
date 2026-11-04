@@ -1,7 +1,8 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { getRankedPlayers, calculateClutchScore, assignTier } from "../utils/fantasyEngine";
+import { getCurrentSeason } from "../utils/season";
 import "../styles/PlayerDetail.css";
 import "../styles/Charts.css";
 import SeasonStatsTable from "../components/SeasonStatsTable";
@@ -43,6 +44,17 @@ function getPlayerTier(p) {
   return assignTier(Math.round(calculateClutchScore(p)));
 }
 
+function RankingsLink() {
+  return (
+    <Link className="back-link" to="/">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>
+      Rankings
+    </Link>
+  );
+}
+
 const SKEL_COLS = [72, 58, 32, 28, 46, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36, 36];
 const SKEL_ROWS = 7;
 
@@ -63,6 +75,7 @@ function PlayerDetailSkeleton() {
           onSearchChange={() => {}}
           searchResults={[]}
           onSelectPlayer={() => {}}
+          action={<RankingsLink />}
         />
       </div>
 
@@ -149,14 +162,6 @@ function PlayerDetailSkeleton() {
       </div>
     </div>
   );
-}
-
-// season usually tips off around Oct 19-24, request NBA stats for the new year on Oct 22nd
-function getCurrentSeason() {
-  const now = new Date();
-  const cutover = new Date(now.getFullYear(), 9, 22);
-  const year = now >= cutover ? now.getFullYear() : now.getFullYear() - 1;
-  return `${year}-${String(year + 1).slice(2)}`;
 }
 
 export default function PlayerDetail({ season = getCurrentSeason() }) {
@@ -306,6 +311,7 @@ export default function PlayerDetail({ season = getCurrentSeason() }) {
           onSearchChange={handleSearchChange}
           searchResults={searchResults}
           onSelectPlayer={handleSelectPlayer}
+          action={<RankingsLink />}
         />
       </div>
 
@@ -341,11 +347,11 @@ export default function PlayerDetail({ season = getCurrentSeason() }) {
                     <span className="player-first-name">{firstName}</span>
                     {lastName.includes("-")
                       ? lastName.split("-").map((part, i, arr) => (
-                          <span key={i} className="player-last-name">
+                          <span key={i} className="player-last-name" style={{ "--name-len": part.length + 1 }}>
                             {part}{i < arr.length - 1 ? "-" : ""}
                           </span>
                         ))
-                      : <span className="player-last-name">{lastName}</span>
+                      : <span className="player-last-name" style={{ "--name-len": lastName.length }}>{lastName}</span>
                     }
                   </>
                 );
@@ -353,6 +359,7 @@ export default function PlayerDetail({ season = getCurrentSeason() }) {
             </h1>
             <div
               className="banner-tier-badge"
+              data-tier={getPlayerTier(player)}
               style={{ background: TIER_BADGE_GRADIENTS[getPlayerTier(player)] }}
             >
               <span>{TIER_ICONS[getPlayerTier(player)]}</span>
@@ -363,7 +370,12 @@ export default function PlayerDetail({ season = getCurrentSeason() }) {
               {player.teamLogo && (
                 <img className="meta-team-logo" src={player.teamLogo} alt={player.teamAbbreviation} />
               )}
-              {player.teamAbbreviation} • #{player.jersey || "00"} • {player.position || "N/A"}
+              <span className="player-meta-full">
+                {player.teamAbbreviation} • #{player.jersey || "00"} • {player.position || "N/A"}
+              </span>
+              <span className="player-meta-short">
+                {player.teamAbbreviation} · #{player.jersey || "00"} · {player.position || "N/A"}
+              </span>
             </p>
           </div>
 

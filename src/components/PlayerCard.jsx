@@ -72,6 +72,7 @@ function PlayerCard({ id, name, team, pts, ast, reb, fantasyScore, tier, teamLog
             <h2 className="player-name">{name}</h2>
           </div>
         </div>
+        <p className="card-meta">{team}</p>
         <div className="card-h-divider" />
 
         <div className="card-body">
@@ -92,7 +93,10 @@ function PlayerCard({ id, name, team, pts, ast, reb, fantasyScore, tier, teamLog
 
         <div className="card-h-divider" />
         <div className="clutch-score-row">
-          <span className="clutch-label">ClutchScore</span>
+          <span className="clutch-label">
+            <span className="clutch-label-full">ClutchScore</span>
+            <span className="clutch-label-short">Clutch</span>
+          </span>
           <span className="clutch-value" ref={scoreRef}>0</span>
         </div>
         </div>

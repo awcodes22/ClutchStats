@@ -3,6 +3,7 @@ import "../styles/App.css";
 import PlayerCard from "../components/PlayerCard";
 import Navbar from "../components/Navbar";
 import { calculateClutchScore, assignTier, getRankedPlayers } from "../utils/fantasyEngine";
+import { getCurrentSeason } from "../utils/season";
 import teamLogos from "../data/teamLogos";
 
 const tierOptions = ["All", "Elite Start", "Strong Start", "Flex Play", "Bench"];
@@ -138,6 +139,7 @@ function Dashboard() {
             onSearchChange={handleSearchChange}
             searchResults={searchResults}
             onSelectPlayer={handleSelectPlayer}
+            action={<span className="season-pill">{getCurrentSeason()}</span>}
           />
           <div className="tier-pills-inline">
             {tierOptions.map((tier) => (
@@ -154,6 +156,7 @@ function Dashboard() {
         </div>
 
         <div className="cards-container-header">
+          <span className="ranked-label">Ranked by ClutchScore</span>
           <div className="dashboard-header-count">{displayedPlayers.length} Players</div>
         </div>
         <div className="cards-container">

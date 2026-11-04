@@ -154,3 +154,146 @@
     font-size: 0.7rem;
   }
 }
+
+@media (min-width: 701px) {
+  .logs-title,
+  .filter-label-short,
+  .log-opp-inline,
+  .logs-swipe-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .game-logs-section {
+    gap: 12px;
+    padding: 14px 0 10px;
+  }
+
+  /* Title and filters share one row */
+  .logs-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .logs-title {
+    margin: 0;
+    color: #1a1a1a;
+    font-size: 0.95rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .logs-filter-buttons {
+    gap: 2px;
+    padding: 0;
+  }
+
+  .filter-btn {
+    position: relative;
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* Stretches the tap area to 44px without changing the pill */
+  .filter-btn::after {
+    content: '';
+    position: absolute;
+    inset: -5px 0;
+  }
+
+  .filter-label-full { display: none; }
+
+  /* Table scrolls sideways inside its card */
+  .game-logs-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .game-logs-table {
+    width: max-content;
+    min-width: 100%;
+    margin: 0;
+    table-layout: auto;
+    /* Sticky cells lose their borders and backgrounds under border-collapse */
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .game-logs-table th,
+  .game-logs-table td {
+    min-width: 46px;
+    padding: 9px 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .game-logs-table th {
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+  }
+
+  .game-logs-table .col-mobile-hidden { display: none; }
+
+  .game-logs-table .team-logo-sm {
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Date and opponent share one column, pinned while the rest of the table scrolls */
+  .game-logs-table th:first-child,
+  .game-logs-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    padding-left: 12px;
+    text-align: left;
+    box-shadow: 1px 0 0 rgba(0,0,0,0.08);
+  }
+
+  .game-logs-table th:first-child { background-color: #fff; }
+
+  .game-logs-table th:first-child::after { content: " / Opp"; }
+
+  /* The hover tint is translucent, so the pinned cell needs an opaque match */
+  .game-logs-table tbody tr:hover td:first-child { background-color: #f6f4f9; }
+
+  .log-opp-inline {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 3px;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .log-opp-inline .team-logo-sm {
+    width: 18px;
+    height: 18px;
+  }
+
+  .logs-swipe-hint {
+    margin: 0;
+    padding: 0 12px;
+    color: #6b6b6b;
+    font-size: 0.78rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .logs-toolbar { gap: 4px; }
+
+  .logs-title { font-size: 0.86rem; }
+
+  .logs-filter-buttons { gap: 0; }
+
+  .filter-btn {
+    padding: 0 7px;
+    font-size: 0.74rem;
+  }
+}
