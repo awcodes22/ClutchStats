@@ -10,6 +10,11 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+// Health check for uptime pings
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "ok", uptime: Math.round(process.uptime()) });
+});
+
 // season usually tips off around Oct 19-24, request NBA stats for the new year on Oct 22nd
 function getCurrentSeason() {
   const now = new Date();
